@@ -1,0 +1,6 @@
+
+Pedroca,	 		Parker,			12345678901, 		2422222222, 	homiaranha@gmail.com
+Guerreira,	 		Xena, 			77755532187, 		2411111111,		warriorxena@gmail.com
+Son, 				Goku, 			80000000000, 		2480000000, 	saiajeans@gmail.com
+monica, 			dentuca, 		98612384634, 		2486478965,		donadarua@gmail.com
+red, 				ranger, 		44455566874, 		2436952841, 	horademorfar@gmail.com
