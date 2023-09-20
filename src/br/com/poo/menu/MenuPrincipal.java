@@ -1,6 +1,8 @@
 package br.com.poo.menu;
 
 import java.io.*;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -166,14 +168,17 @@ public class MenuPrincipal {
 
 	private static void relatorioCarrosCadastradosArquivo() {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter("relatorio_carros.txt"))) {
-			writer.write("----- Relatório de Carros Cadastrados -----\n");
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			String dataAtualFormatada = dateFormat.format(new Date());
+			writer.write("\n----- Relatório de Carros Cadastrados -----\n");
+			writer.write("\n----- Data do relatório gerado: " + dataAtualFormatada + " minutos\n");
 			if (carros.isEmpty()) {
 				writer.write("Nenhum carro cadastrado.\n");
 			} else {
 				for (Carro carro : carros) {
 					writer.write(carro.toString() + "\n");
 				}
-				writer.write("Total de carros cadastrados: " + carros.size() + "\n");
+				writer.write("\nTotal de carros cadastrados: " + carros.size() + "\n");
 			}
 			customLogger.log(Level.INFO, () -> "Relatório de carros gerado em arquivo com sucesso.");
 		} catch (IOException e) {
@@ -195,15 +200,20 @@ public class MenuPrincipal {
 
 	private static void gerarRelatorioPessoasImpresso() {
 		try (PrintWriter writer = new PrintWriter(new FileWriter("relatorio_pessoas_impresso.txt"))) {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			String dataAtualFormatada = dateFormat.format(new Date());
 			writer.println("----- Relatório de Pessoas Cadastradas (Impresso) -----");
+			writer.println("\n----- Data do relatório gerado: " + dataAtualFormatada + " minutos \n");
+			
 			if (pessoas.isEmpty()) {
 				writer.println("Nenhuma pessoa cadastrada.");
 			} else {
 				for (Pessoa pessoa : pessoas) {
 					writer.println(pessoa.toString());
 				}
-				writer.println("Total de pessoas cadastradas: " + pessoas.size());
-			}
+				writer.println("\n Total de pessoas cadastradas: " + pessoas.size());
+				
+			}	
 			customLogger.log(Level.INFO, () -> "Relatório de pessoas impresso com sucesso.");
 		} catch (IOException e) {
 			customLogger.log(Level.INFO, () -> "Erro ao gerar relatório de pessoas impresso: " + e.getMessage());
